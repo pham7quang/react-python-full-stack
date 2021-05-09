@@ -1,0 +1,62 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: entrepreneur-service
+spec:
+  selector:
+    app: entrepreneur
+  ports:
+  - protocol: "TCP"
+    name: "backend"
+    port: 5000
+    targetPort: 5000
+  - protocol: "TCP"
+    name: "frontend"
+    port: 5080
+    targetPort: 80
+  type: LoadBalancer
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: entrepreneur-backend
+spec:
+  selector:
+    matchLabels:
+      app: entrepreneur
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: entrepreneur
+    spec:
+      containers:
+      - name: entrepreneur-backend
+        image: entrepreneur-backend:latest
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 5000
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: entrepreneur-frontend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: entrepreneur
+  template:
+    metadata:
+      labels:
+        app: entrepreneur
+    spec:
+      containers:
+        - name: entrepreneur-frontend
+          image: entrepreneur-frontend
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 80
+      restartPolicy: Always
