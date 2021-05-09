@@ -11,6 +11,11 @@ This project will be:
 * Cache the results of the Census API to reduce response time on subsequent calls
 * Display the Census data in a Table on the browser
 
+
+https://user-images.githubusercontent.com/9004069/117586166-782a4400-b0e4-11eb-983b-cfde843a6271.mp4
+
+
+
 # Local Build
 ## Install the Tools
 You'll need to install the necessary tools to get the project running, assuming you are using a Mac:
