@@ -1,0 +1,10 @@
+default:
+  CENSUS_API_KEY: [REPLACE_ME]
+  DEBUG: true
+  API_CACHE_MINUTES: 5
+  
+development:
+  DEBUG: true
+
+production:
+  DEBUG: false
